@@ -11,7 +11,15 @@
     <div id="app">
       <input type="file" name="image-upload" id="image-upload">
       <label><input type="checkbox" id="auto-rotate">auto rotate</label>
-      <div id="canvas-3d"></div>
+      <div id="box-demensions-inputs">
+        <label> Box Dimension: 
+          <select name="" id="box-demensions-selector" value="box-1">
+            <option value="box-1">1 x 1 x 1</option>
+            <option value="box-2">3 x 2 x 1</option>
+          </select>
+        </label>
+      </div>
+      <div class="canvas-wrapper"><div id="canvas-3d"></div></div>
       <div id="boxRotatorOptions"></div>
     </div>
     <script type="module" src="/main.js"></script>

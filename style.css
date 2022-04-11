@@ -1,3 +1,28 @@
+:root{
+  --canvas-height: 400px;
+  --canvas-width: 400px;
+  --canvas-depth: -200px;
+  --box-width:400px;
+  --box-length:400px;
+  --box-height:400px;
+  
+  --box-z-depth: 200px;
+  --box-y-depth: 200px;
+  --box-x-depth: 200px;
+}
+/* :root{
+  --box-length:100px;
+  --box-width:300px;
+  --box-height:200px;
+  --box-canvas-depth: -50px;
+  --box-z-depth: 50px;
+  --box-y-depth: 100px;
+  --box-x-depth: 150px;
+  --x-offset:100px;
+  --y-offset: 50px;
+} */
+
+
 *{
   box-sizing: border-box;
 }
@@ -15,13 +40,35 @@ label, input{
   margin-top: 60px;
 }
 
-#canvas-3d{
-  outline:solid  1px;
-  height: 400px;
-  width: 400px;
-  margin:5em auto;
+#boxRotatorOptions{
+  padding: 2em 0;
+  padding-top: 3em;
+}
 
+#box-demensions-inputs{
+  padding: 2em 0;
+  padding-bottom: 3em;
+}
+
+
+#canvas-3d{
+  
+  height: var(--box-height);
+  width: var(--box-width);
   perspective: 1200px;
+}
+
+.canvas-wrapper{
+  outline:solid  1px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: var(--canvas-height);
+  width: var(--canvas-width);
+  
+  margin:5em auto;
 }
 
 .box{
@@ -32,7 +79,7 @@ label, input{
   
 
   transform-style: preserve-3d;
-  transform: translateZ(-400px);
+  transform: translateZ(var(--box-canvas-depth));
 
   transition: transform 1s;
 }
@@ -54,12 +101,35 @@ label, input{
   background-repeat: no-repeat;
 }
 
-.box__face--front  { transform: rotateY(  0deg) translateZ(200px);}
-.box__face--right  { transform: rotateY( 90deg) translateZ(200px); }
-.box__face--back   { transform: rotateX(180deg) translateZ(200px); }
-.box__face--left   { transform: rotateY(-90deg) translateZ(200px); }
-.box__face--top    { transform: rotateX( 90deg) translateZ(200px); }
-.box__face--bottom { transform: rotateX(-90deg) translateZ(200px); }
+
+.box__face--front,
+.box__face--back {
+  height: var(--box-height);
+  width: var(--box-width);
+}
+
+.box__face--right,
+.box__face--left {
+  height: var(--box-height);
+  width: var(--box-length);
+  left: var(--x-offset)
+}
+
+.box__face--top,
+.box__face--bottom {
+  height: var(--box-length);
+  width: var(--box-width);
+  top: var(--y-offset)
+}
+
+
+
+.box__face--front  { transform: rotateY(  0deg) translateZ(var(--box-z-depth)) }
+.box__face--right  { transform: rotateY( 90deg) translateZ(var(--box-x-depth)) }
+.box__face--back   { transform: rotateX(180deg) translateZ(var(--box-z-depth)) }
+.box__face--left   { transform: rotateY(-90deg) translateZ(var(--box-x-depth)) }
+.box__face--top    { transform: rotateX( 90deg) translateZ(var(--box-y-depth)) }
+.box__face--bottom { transform: rotateX(270deg) translateZ(var(--box-y-depth)) }
 
 .box.show-front  { transform: translateZ(-200px) rotateX(   0deg); }
 .box.show-right  { transform: translateZ(-200px) rotateY( -90deg); }
@@ -69,7 +139,7 @@ label, input{
 .box.show-bottom { transform: translateZ(-200px) rotateX(  90deg); }
 
 .box.is-spinning {
-  animation: spinBox 90s infinite ease-in-out;
+  animation: spinBox 90s infinite;
 }
 
 @keyframes spinBox {
