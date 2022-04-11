@@ -34,23 +34,23 @@ rotationOptions.innerHTML = `
     <input type="radio" id="top"
     name="box-face" value="top">
     <label for="top">Top</label>
+
+    <input type="radio" id="left"
+    name="box-face" value="left">
+    <label for="left">Left</label>
+
+    <input type="radio" id="right"
+    name="box-face" value="right">
+    <label for="right">Right</label>
 `
 
-const __ = `  <input type="radio" id="left"
-name="box-face" value="left">
-<label for="left">Left</label>
-
-<input type="radio" id="right"
-name="box-face" value="right">
-<label for="right">Right</label>
-`
 
 
 const autoRotateSelector = document.querySelector('#auto-rotate')
 
 
 const box = canvas.querySelector('.box')
-let currentClass = ""
+let currentClass = "show-front"
 
 const toggleRotationOptionsDisabled = (type) => {
     
@@ -75,7 +75,7 @@ const changeAutoRotateStatus = () => {
     toggleRotationOptionsDisabled(checked)
 
     if(checked){
-        
+        console.log(currentClass)
         let showClass = `is-spinning`
         if( currentClass ) box.classList.remove( currentClass )
         box.classList.add( showClass )
@@ -102,10 +102,8 @@ function readImage(callback) {
 
 }
 
-
-
-imageInput.addEventListener('change', () => {
-    const image = {url: ""}
+const onSetImage = () => {
+    const image = {url: ""} 
     const imageRenderSurfaces = { back:2, top:3, front:0,  bottom:1, }
     readImage( ( result )=>{
         image.url = result
@@ -118,16 +116,20 @@ imageInput.addEventListener('change', () => {
                 
                 faces[index].style.backgroundPosition =  `center ${-1*400*imageRenderSurfaces[id]}px`
             }
-            
-
         }
     })
-    
-})
+}
 
-changeAutoRotateStatus()
+
+
+
+
 changeSide()
+onSetImage()
+changeAutoRotateStatus()
+
 
 
 rotationOptions.addEventListener( 'change', changeSide )
 autoRotateSelector.addEventListener( 'change', changeAutoRotateStatus )
+imageInput.addEventListener('change', onSetImage)
