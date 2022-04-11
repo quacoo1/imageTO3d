@@ -1,7 +1,7 @@
 const autoRotateSelector = document.querySelector('#auto-rotate')
 
 
-const changeAutoRotateStatus = ({ box, toggleRotationOptionsDisabled }) => {
+export const changeAutoRotateStatus = ({ box, toggleRotationOptionsDisabled, changeSide }) => {
     let checked = autoRotateSelector.checked
     toggleRotationOptionsDisabled(checked)
 
@@ -17,6 +17,7 @@ const changeAutoRotateStatus = ({ box, toggleRotationOptionsDisabled }) => {
         if( box.class )box.element.classList.remove( box.class )
         box.element.classList.add( showClass )
         box.class = showClass
+        changeSide({box})
     }
 
 }

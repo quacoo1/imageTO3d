@@ -37,25 +37,27 @@ label, input{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-}
-
-#boxRotatorOptions{
-  padding: 2em 0;
-  padding-top: 3em;
+  padding-top:2em;
+  margin-bottom: 2em;
 }
 
 #box-demensions-inputs{
-  padding: 2em 0;
-  padding-bottom: 3em;
+  padding-top: 2em;
 }
 
 
 #canvas-3d{
-  
+  text-transform: capitalize;
+  color: rgba(0,0,0,0);
   height: var(--box-height);
   width: var(--box-width);
   perspective: 1200px;
+  transition: color .7s ease-in-out;
+}
+
+#canvas-3d:hover{
+  cursor: pointer;
+  color: #2c3e50;
 }
 
 .canvas-wrapper{
@@ -69,6 +71,14 @@ label, input{
   width: var(--canvas-width);
   
   margin:5em auto;
+}
+
+.image-input-wrapper{
+  width: max-content;
+  margin: 0 auto;
+  padding: 1em;
+  border-radius: .5em;
+  border: solid 1px #ccc;
 }
 
 .box{
@@ -143,11 +153,11 @@ label, input{
 }
 
 @keyframes spinBox {
-    0% { transform: translateZ(-200px) rotateX(  45deg) rotateY(  0deg); }
-    25%{ transform: translateZ(-200px) rotateX(  45deg) rotateY( 360deg);}
-    50%{ transform: translateZ(-200px) rotateX(  -45deg) rotateY(  0deg);}
-    75%{ transform: translateZ(-200px) rotateX(  -45deg) rotateY(  360deg);}
-  100% { transform: translateZ(-200px) rotateX(  45deg) rotateY(0deg); }
+    0% { transform: translateZ(-200px) rotateX(  -45deg) rotateY(  0deg); }
+    25%{ transform: translateZ(-200px) rotateX(  -45deg) rotateY( 360deg);}
+    50%{ transform: translateZ(-200px) rotateX(  45deg) rotateY(  0deg);}
+    75%{ transform: translateZ(-200px) rotateX(  45deg) rotateY(  360deg);}
+  100% { transform: translateZ(-200px) rotateX(  -45deg) rotateY(0deg); }
 }
 
 

@@ -1,19 +1,18 @@
 const rotationOptions = document.querySelector('#boxRotatorOptions')
 
 rotationOptions.innerHTML = `
-    <input type="radio" id="front" 
-    name="box-face" value="front" checked>
-    <label for="front">Front</label>
+    <span style="font-weight:bold">Select Box Face:</span>
+    <input type="radio" id="back"
+    name="box-face" value="back">
+    <label for="back">Back</label>
 
     <input type="radio" id="bottom"
     name="box-face" value="bottom">
     <label for="bottom">Bottom</label>
 
-
-    <input type="radio" id="back"
-    name="box-face" value="back">
-    <label for="back">Back</label>
-
+    <input type="radio" id="front" 
+    name="box-face" value="front" checked>
+    <label for="front">Front</label>
 
     <input type="radio" id="top"
     name="box-face" value="top">
@@ -28,7 +27,7 @@ rotationOptions.innerHTML = `
     <label for="right">Right</label>
 `
 
-const changeSide = (box) => {
+export const changeSide = ({box}) => {
     let checkedOption = rotationOptions.querySelector(':checked')
     let showClass = `show-${checkedOption.value}`
 
@@ -49,8 +48,8 @@ export const toggleRotationOptionsDisabled = (type) => {
 
 
 
-export const addRotationOptions = (box) => {
-    changeSide(box)
-    rotationOptions.addEventListener( 'change', ()=>{ changeSide(box) } )
+export const addRotationOptions = (options) => {
+    changeSide(options)
+    rotationOptions.addEventListener( 'change', ()=>{ changeSide(options) } )
     return rotationOptions
 }

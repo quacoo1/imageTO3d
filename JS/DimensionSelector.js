@@ -1,10 +1,8 @@
 
-
 const dimensionsSelector = document.querySelector('#box-demensions-selector')
 const setBoxDimension = ( { box ,boxTypes, setImage } ) => {
 
     box.dimensions = boxTypes[dimensionsSelector.value]
-
 
     box.dimensions.canvasHeight = () => Math.max(box.dimensions.height, box.dimensions.width, box.dimensions.length )
     box.dimensions.canvasWidth = () => box.dimensions.canvasHeight()
